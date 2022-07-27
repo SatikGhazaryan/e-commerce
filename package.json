@@ -1,7 +1,6 @@
 {
   "name": "ecommerce",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -24,5 +23,6 @@
   "devDependencies": {
     "eslint": "^8.20.0",
     "nodemon": "^2.0.19"
-  }
+  },
+  "description": ""
 }
