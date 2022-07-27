@@ -1,10 +1,10 @@
-const categories = require('../schemas/categories');
+const categories = require('../schemas/categories-schema');
 
 async function getCategoriesController(req, res) {
-    const categorie = await categories.find();
+    const Categories = await categories.find();
     res.send([
         {
-            data: categorie,
+            data: Categories,
         },
     ]);
 }
