@@ -5,16 +5,6 @@
 // const inputUserName = document.getElementById('username');
 // const inputPasswordUser = document.getElementById('passwordUser');
 
-// (async () => {
-//     const response = await fetch('http://localhost:3003/registration', {
-//         method: 'GET',
-//     });
-//     const body = await response.json();
-//     console.log('body', body);
-// }
-
-// )();
-
 // const sub = document.getElementById('sub');
 // sub.addEventListener('click', async () =>{
 //     const inputUserNameValue = inputUserName.value;

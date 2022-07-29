@@ -16,15 +16,10 @@ const UserSchema = new Schema({
         unique: true,
         required: true,
     },
-    isActivated: {
-        type: Boolean,
-        default: false,
+    created: {
+        type: Date,
+        default: Date.now,
     },
-    activationLink: {
-        type: String,
-        required: true,
-    },
-
 });
 
 const User = mongoose.model('users', UserSchema);

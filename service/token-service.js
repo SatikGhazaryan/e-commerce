@@ -1,26 +1,41 @@
 'use strict';
 
 const jwt = require('jsonwebtoken');
-const TokenUser = require('../schemas/user-token-schema.js');
 
-class TokenService {
-    static generateTokens(payload) {
-        const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: '30m' });
-        const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: '30d' });
-        return {
-            accessToken,
-            refreshToken,
-        };
+const verifyToken = (req, res, next) => {
+    const authUserToken = req.headers.token;
+    if (authUserToken) {
+        // eslint-disable-next-line prefer-destructuring
+        const token = authUserToken.split(' ')[1];
+        jwt.verify(
+            token, process.env.JWT_ACCESS_SECRET,
+            (error, user) => {
+                if (error) {
+                    res
+                        .status(403)
+                        .json('Token is not valid');
+                }
+                req.user = user;
+                next();
+            },
+        );
+    } else {
+        return res
+            .status(401)
+            .json('You are not authenticated!');
     }
-    static async saveToken(userId, refreshToken) {
-        const tokenData = await TokenUser.findOne({ user: userId });
-        if (tokenData) {
-            tokenData.refreshToken = refreshToken;
-            return tokenData.save();
+};
+
+const verifyTokenAuthorization = (req, res, next) => {
+    verifyToken(req, res, () => {
+        if (req.user.id === req.params.id) {
+            next();
+        } else {
+            res
+                .atatus(403)
+                .json('You are not alowed to do that');
         }
-        const token = await TokenUser.create({ user: userId, refreshToken });
-        return token;
-    }
-}
+    });
+};
 
-module.exports = { TokenService };
+module.exports = { verifyToken, verifyTokenAuthorization };
