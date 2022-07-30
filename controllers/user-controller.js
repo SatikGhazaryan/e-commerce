@@ -6,12 +6,11 @@ const jwt = require('jsonwebtoken');
 
 class UserController {
     static async getUserPage(req, res) {
-        this; try {
+        try {
             res.send('login Page');
         } catch (error) {
-            res
-                .status(500)
-                .json(error);
+            console.log('getUserPage err', error);
+            res.status(500).send({ message: 'something went wrong' });
         }
     }
     static async registration(req, res) {
@@ -24,28 +23,24 @@ class UserController {
             ).toString(),
         });
         console.log(newUser);
-        this; try {
+        try {
             const saveUser = await newUser.save();
-            res
-                .status(201)
-                .json(saveUser);
+            res.status(201).send(saveUser);
         } catch (error) {
-            res
-                .status(500)
-                .json(error);
+            console.log('registration err', error);
+
+            res.status(500).send({ message: 'something went wrong' });
         }
     }
 
     static async postLoginUser(req, res) {
-        this; try {
-            const userIs = await User.findOne({ email: req.body.email });
-            if (!userIs) {
-                res
-                    .status(404)
-                    .json('Email not found');
+        try {
+            const user = await User.findOne({ email: req.body.email });
+            if (!user) {
+                return res.status(404).json('User not found');
             }
             const hashPasswordUser = CryptoJs.AES.decrypt(
-                userIs.passwordUser,
+                user.passwordUser,
                 process.env.PASS_SEC,
             );
             const passwordUser = hashPasswordUser.toString(CryptoJs.enc.Utf8);
@@ -56,15 +51,11 @@ class UserController {
                     .json('Wrong password');
             }
             const accessToken = jwt.sign(
-                {
-                    id: userIs._id,
-                },
+                { id: user._id },
                 process.env.JWT_ACCESS_SECRET, { expiresIn: '3d' },
             );
-            res
-                .status(200)
-                // eslint-disable-next-line no-underscore-dangle
-                .json({ ...userIs._doc, accessToken });
+            res.status(200)
+                .send({ data: user, accessToken });
         } catch (error) {
             res
                 .status(500)
@@ -78,7 +69,7 @@ class UserController {
                 process.env.PASS_SEC,
             ).toString();
         }
-        this; try {
+        try {
             const updateUser = await User.findByIdAndUpdate(req.params.id, {
                 $set: req.body,
             }, { new: true });
@@ -92,7 +83,7 @@ class UserController {
         }
     }
     static async deleteUser(req, res) {
-        this; try {
+        try {
             await User.findByIdAndDelete(req.params.id);
             res
                 .status(200)

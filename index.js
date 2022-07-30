@@ -2,10 +2,7 @@ const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const mongoose = require('mongoose');
-const dashboardRouter = require('./routers/admin-router.js');
-const adminRouter = require('./routers/admin-router.js');
-const userRouter = require('./routers/user-router.js');
-const cors = require('cors');
+const indexRouter = require('./routers');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 const json = express.json();
@@ -17,9 +14,7 @@ app.use(staticFiles);
 
 app.use(json);
 app.use(cookieParser());
-app.use(cors());
-app.use('/admin', adminRouter, dashboardRouter);
-app.use('/user', userRouter);
+app.use('/v1', indexRouter);
 
 (async () => {
     await mongoose.connect(process.env.DB_URL);

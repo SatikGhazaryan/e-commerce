@@ -1,54 +1,34 @@
 'use strict';
-
-const  Admin = require('../schemas/admin-schema.js');
-// const User = require('../schemas/user-schema.js');
-// const CryptoJs = require('crypto-js');
-// const jwt = require('jsonwebtoken');
-// const { UserController } = require('../controllers/user-controller.js');
+const Admin = require('../schemas/admin-schema.js');
 
 class AdminController {
-    static async postAdmin(req, res) {
-        const newAdmin = new Admin({
-            nameAdmin: req.body.nameAdmin,
-            passwordAdmin: req.body.passwordAdmin,
-        });
-        this; try {
-            const saveAdmin = await newAdmin.save();
-            res
-                .status(201)
-                .json(saveAdmin);
+    static async createAdmin(req, res) {
+        const adminBody = req.body;
+        try {
+            const saveData = await Admin.create({
+                name: adminBody.nameAdmin,
+                password: adminBody.passwordAdmin,
+            });
+
+            return res.status(201).send({ data: saveData });
         } catch (error) {
-            res
-                .status(500)
-                .json(error);
+            console.log('error', error);
+            res.status(400).send({ message: 'Invalid data' });
         }
     }
-    // static async postLoginAdmin(req, res, next) {
-    //     this; try {
 
-    //     } catch (error) {
+    static async loginAdmin(req, res) {
+        const user = await Admin.findOne({
+            name: req.body.nameAdmin,
+            password: req.body.passwordAdmin,
+        });
 
-    //     }
-    // }
-    // static async postLogoutAdmin(req, res, next) {
-    //     this; try {
+        if (user) {
+            return res.status(200).send({ data: user });
+        }
 
-    //     } catch (error) {
-
-    //     }
-    // }
-    // static async getUser(req, res) {
-    //     this; try {
-    //         const userIs = await User.findById(req.params.id);
-    //         res
-    //             .status(200)
-    //             .json({ user._doc });
-    //     } catch (error) {
-    //         res
-    //             .status(500)
-    //             .json(error);
-    //     }
-    // }
+        res.status(400).send({ message: 'username and password does not match' });
+    }
 }
 
 module.exports = { AdminController };

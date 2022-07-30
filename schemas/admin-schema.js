@@ -3,12 +3,12 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const AdminSchema = new Schema({
-    nameAdmin: {
+    name: {
         type: String,
         unique: true,
         required: true,
     },
-    passwordAdmin: {
+    password: {
         type: String,
         required: true,
     },
