@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=s, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="user.css" />
+    <title>E-commerce</title>
+  </head>
+  <body>
+    <nav>
+      <div class="d-flex">
+        <a href="#" class="logo">SZAL</a>
+        <ul class="ul">
+          <li><a href="#about">About us</a></li>
+          <li><a href="#shop">Shop</a></li>
+
+          <li><a href="#cont">Contact us</a></li>
+        </ul>
+        <ul class="icons">
+          <li><i class="fa fa-search"></i></li>
+          <li><i class="fa fa-heart-o"></i></li>
+          <li><i class="fa fa-shopping-bag"></i></li>
+          <li id="user"><i class="fa fa-user-o"></i></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <!-- Swiper -->
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img
+              src="https://ld-wt73.template-help.com/wt_prod-23024/images/grid-gallery-1-original.jpg"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://ld-wt73.template-help.com/wt_prod-23024/images/grid-gallery-2-original.jpg"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://ld-wt73.template-help.com/wt_prod-23024/images/grid-gallery-3-original.jpg"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://ld-wt73.template-help.com/wt_prod-23024/images/grid-gallery-4-original.jpg"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://ld-wt73.template-help.com/wt_prod-23024/images/grid-gallery-5-original.jpg"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://ld-wt73.template-help.com/wt_prod-23024/images/grid-gallery-6-original.jpg"
+            />
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+    <div class="container" id="about">
+      <div class="d-flex">
+        <div class="right">
+          <img
+            src="https://ld-wt73.template-help.com/wt_prod-23024/images/about-570x511.jpg"
+          />
+        </div>
+        <div class="left">
+          <div class="d-flex">
+            <h1>About us</h1>
+          </div>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged.
+          </p>
+          <p>
+            It was popularised in the 1960s with the release of Letraset sheets
+            containing Lorem Ipsum passages, and more recently with desktop
+            publishing software like Aldus PageMaker including versions of Lorem
+            Ipsum.
+          </p>
+          <p>
+            It was popularised in the 1960s with the release of Letraset sheets
+            containing Lorem Ipsum passages, and more recently with desktop
+            publishing software like Aldus PageMaker including versions of Lorem
+            Ipsum.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container" id="shop">
+      <div class="d-flex">
+        <h1 class="categories">Shop list</h1>
+        <!-- products-->
+      </div>
+    </div>
+
+    <div class="bg" id="cont">
+      <h1 class="categories">Contact us</h1>
+
+      <div class="container">
+        <div class="d-f">
+          <div class="left">
+            <div class="row">
+              <input type="text" class="inp" placeholder="name" />
+            </div>
+            <div class="row">
+              <input type="email" class="inp" placeholder="e-mail" />
+            </div>
+            <div class="row">
+              <input type="phone" class="inp" placeholder="phone" />
+            </div>
+            <div class="row">
+              <textarea
+                name=""
+                id=""
+                cols="30"
+                rows="5"
+                placeholder="massage"
+                class="inp"
+              ></textarea>
+            </div>
+            <div class="row">
+              <input type="button" class="btn" value="Send Message" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <ul>
+            <li><i class="fa fa-phone"></i> +(374) 987–5874</li>
+            <li><i class="fa fa-map"></i> Erevan, Armenia</li>
+            <li><i class="fa fa-envelope"></i> info@szal.com</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>e-commerce by SZAL</p>
+    </footer>
+    <div class="popup" id="pop">
+
+      <div class="popup-body">
+       <span class="text-end" id="cls"> <i class="fa fa-close "></i></span>
+        <div class="d-flex">
+          <div class="left">
+            <p>Sign Up</p>
+            <form>
+            <div class="row-user">
+              <input type="text" placeholder="Name" class="inp-user" />
+            </div>
+            <div class="row-user">
+              <input type="text" placeholder="E-mail" class="inp-user" />
+            </div>
+            <div class="row-user">
+              <input type="password" placeholder="Password" class="inp-user" />
+            </div>
+            <div class="row-user">
+              <input type="submit" class="btn-user-creat" value="Create new account" />
+            </div>
+          </form>
+          </div>
+          <div class="center"></div>
+          <div class="right">
+            <form>
+            <div class="row-user mt">
+              <input type="text" class="inp-user"  placeholder="E-mail"/>
+            </div>
+            <div class="row-user">
+              <input type="password" placeholder="Password" class="inp-user" />
+            </div>
+            <div class="row-user">
+              <input type="submit" class="btn-user" value="Log In" />
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- My JS-->
+    <script src="user.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        },
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+        },
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+      });
+    </script>
+  </body>
+</html>
