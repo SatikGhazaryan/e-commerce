@@ -1,24 +1,24 @@
 const express = require('express');
-
 const app = express();
 const http = require('http').createServer(app);
-const port = 3003;
-
-// Middleware => It is those methods/functions/operations that are called BETWEEN processing the Request and sending the Response in your application method.
+const mongoose = require('mongoose');
+const indexRouter = require('./routers');
+const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv');
 const json = express.json();
+const port = process.env.PORT || 3003;
+dotenv.config();
 
-app.use(json);
-
-// front conect backe
 const staticFiles = express.static('./front');
 app.use(staticFiles);
-// (async () => {
-//   await mongoose.connect("mongodb://localhost:27017/userproject");
-// })();
 
-const { getCategoriesController } = require('./controllers/index.js');
+app.use(json);
+app.use(cookieParser());
+app.use('/v1', indexRouter);
 
-app.get('/', getCategoriesController);
+(async () => {
+    await mongoose.connect(process.env.DB_URL);
+})();
 
 http.listen(port, () => {
     console.log(`server is listening port ${port}`);

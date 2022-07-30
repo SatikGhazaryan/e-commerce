@@ -1,7 +1,8 @@
 'use strict';
+
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const categoriesSchemas = new Schema(
+const CategoriesSchemas = new Schema(
     {
         nameCategorie: {
             type: String,
@@ -10,5 +11,6 @@ const categoriesSchemas = new Schema(
     },
     { collection: 'categories' },
 );
-const Categories = mongoose.model('categories', categoriesSchemas);
+const Categories = mongoose.model('categorie', CategoriesSchemas);
+
 module.exports = Categories;
