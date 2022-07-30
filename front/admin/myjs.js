@@ -2,7 +2,7 @@
 const li = document.querySelectorAll('.li');
 document.getElementById('inNav').innerHTML = li[0].innerText;
 let [privElement] = li[0].querySelectorAll('i');
-privElement.style.color = '#4fa607';
+privElement.style.color = '#a43664';
 let categorie = true;
 let product = true;
 li.forEach(element =>  {
@@ -10,7 +10,7 @@ li.forEach(element =>  {
         privElement.style.color = '#000';
         [privElement] = this.querySelectorAll('i');
         document.getElementById('inNav').innerHTML = this.innerText;
-        this.querySelectorAll('i')[0].style.color = '#4fa607';
+        this.querySelectorAll('i')[0].style.color = '#a43664';
         const form = document.querySelector('form');
         if (form) {
             document.getElementById('cont').removeChild(form);
