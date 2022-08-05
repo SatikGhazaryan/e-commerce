@@ -72,23 +72,27 @@ function addProduct() {
         } else if (i === 1) {
             const textarea = document.createElement('textarea');
             textarea.placeholder = 'Description';
+            textarea.id = 'description';
             div.append(textarea);
             form.append(div);
         } else if (i === 2) {
             const price = document.createElement('input');
             price.placeholder = 'price';
             price.type = 'number';
+            price.id = 'price';
             div.append(price);
             form.append(div);
         } else if (i === 3) {
             const file = document.createElement('input');
             file.type = 'file';
+            file.id = 'imgUrl';
             div.append(file);
             form.append(div);
         } else if (i === 4) {
             const select = document.createElement('select');
             const option = document.createElement('option');
             // option.innerHtml='categories from db'
+            select.id = 'selectCategories';
             select.append(option);
             div.append(select);
             form.append(div);
@@ -104,3 +108,44 @@ function addProduct() {
     document.getElementById('cont').append(form);
     product = false;
 }
+
+async () => {
+    const response = await fetch('http://localhost:3003/v1/products', {
+        method: 'GET',
+    });
+    const requestBody = await response.json();
+    console.log(requestBody);
+    console.log(response);
+};
+
+addProduct();
+const submitNewProduct = document.getElementById('add');
+submitNewProduct.addEventListener('click', async () => {
+    const productName = document.getElementById('productName');
+    const description = document.getElementById('description');
+    const price = document.getElementById('price');
+    const imgUrl = document.getElementById('imgUrl');
+    // const selectCategories = document.getElementById('selectCategories');
+    const reqBody = {
+        name: productName.value,
+        description: description.value,
+        price: price.value,
+        imgUrl: imgUrl.value,
+        // categories: selectCategories.value,
+    };
+    console.log('reqBody', reqBody);
+    try {
+        const response = await fetch('http://localhost:3003/v1/products', {
+            method: 'POST',
+            body: JSON.stringify(reqBody),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+
+        });
+        const body = await response.json();
+        console.log('resBody', body);
+    } catch (error) {
+        console.log('Create user error', error);
+    }
+});

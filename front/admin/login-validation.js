@@ -17,12 +17,12 @@ getSubmit.addEventListener('click', async () => {
     }
 
     const requestBody = {
-        nameAdmin: inputName,
-        passwordAdmin: inputPass,
+        name: inputName,
+        password: inputPass,
     };
 
     try {
-        const response = await fetch('http://localhost:3003/admin/login', {
+        const response = await fetch('http://localhost:3003/v1/admin/login', {
             method: 'POST',
             body: JSON.stringify(requestBody),
             headers: {
