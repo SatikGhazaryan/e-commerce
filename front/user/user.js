@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-/* eslint-disable max-len */
 'use strict';
+
 document.getElementById('user').addEventListener('click', registration);
 
 document.getElementById('pop').style.display = 'none';
@@ -11,63 +11,47 @@ document.getElementById('cls').addEventListener('click', () =>  {
     document.getElementById('pop').style.display = 'none';
 });
 
-(async () => {
+async () => {
     const response = await fetch('http://localhost:3003/v1/users', {
         method: 'GET',
-        // body: JSON.stringify(requestBody),
-        // headers: {
-        //     'Content-Type': 'application/json',
-        // },
     });
     const requestBody = await response.json();
     console.log(requestBody);
     console.log(response);
-})();
+};
 
-if (response.ok) {
-    console.log('its ok');
-    window.open('user.html');
-} else {
-    throw new Error('Page not found');
-}
-
-const inputUserNameSignUp = document.getElementById('inpUsrNmSignUp');
-const inputPasswordUserSignUp = document.getElementById('inpUsrPswdSignUp');
-const inputEmailUserSignUp = document.getElementById('inpUsrEmlSignUp');
-// const inputPasswordUserLogIn = document.getElementById('inptUsrPswdLgIn');
-// const inputEmailUserLogIn = document.getElementById('inpUsrEmlLgIn');
 const submitNewUser = document.getElementById('sbmtNewUsr');
-// const submitUserLogIn = document.getElementById('sbmtUsrLgIn');
-
 submitNewUser.addEventListener('click', async () => {
-    const inputUserNameSignUpValue = inputUserNameSignUp.value;
-    const inputEmailUserSignUpValue = inputEmailUserSignUp.value;
-    const inputPasswordUserSignUpValue = inputPasswordUserSignUp.value;
-    const reqBody = {
-        nameUser: inputUserNameSignUpValue,
-        passworsUser: inputPasswordUserSignUpValue,
-        email: inputEmailUserSignUpValue,
-    };
-    console.log('reqBody', reqBody);
-
-    inputPasswordUserSignUp.addEventListener('input', () => {
-        const usrPswd = document.querySelector('.usrPswd');
-        const passwordText = document.querySelector('.passwordText');
-        const userPassPattern1 = /(?!.* )(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/;
-        if (inputPasswordUserSignUpValue.match(userPassPattern1)
-        && inputPasswordUserSignUpValue.length >= 8
-          && inputPasswordUserSignUpValue.length <= 16
-        ) {
-            usrPswd.classList.add('valid');
-            usrPswd.classList.remove('invalid');
-            passwordText.innerHTML = 'Your Password in Valid';
+    const inputNameSignUp = document.getElementById('inpUsrNmSignUp');
+    const inputPasswordSignUp = document.getElementById('inpUsrPswdSignUp');
+    const inputEmailSignUp = document.getElementById('inpUsrEmlSignUp');
+    inputEmailSignUp.addEventListener('input', () => {
+        const emailPattern = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1-30}$/;
+        if (inputEmailSignUp.value.match(emailPattern)) {
+            console.log('valid');
+            // your code ...... email is ok
         } else {
-            usrPswd.classList.add('invalid');
-            usrPswd.classList.remove('valid');
-            passwordText.innerHTML = 'Your password must be greater than 8 and less than 16, it must contain at least one uppercase and one lowercase letter, a special character, a number, it must not contain a space, the name must not be equal to the  password';
+            console.log('invalid');
+            // your code .... email error
         }
     });
-
+    inputPasswordSignUp.addEventListener('input', () => {
+        const passwordPattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}/;
+        if (inputPasswordSignUp.value.match(passwordPattern)) {
+            console.log('valid');
+            // your code ...... password is ok
+        } else {
+            console.log('invalid');
+            // your code .... password error
+            // your password must be at least 6-16 characters as well as contain at least one uppercase,one lowercase,one number
+        }
+    }) ;
+    const reqBody = {
+        name: inputNameSignUp.value,
+        password: inputPasswordSignUp.value,
+        email: inputEmailSignUp.value,
+    };
+    console.log('reqBody', reqBody);
     try {
         const response = await fetch('http://localhost:3003/v1/users', {
             method: 'POST',
@@ -77,14 +61,44 @@ submitNewUser.addEventListener('click', async () => {
             },
 
         });
-        if (response.ok) {
-            window.open('user.html');
-            console.log('new user created');
-        } else {
-            throw new Error('new user not created');
-        }
+        const body = await response.json();
+        console.log('resBody', body);
     } catch (error) {
         console.log('Create user error', error);
+    }
+});
+
+const submitLogIn = document.getElementById('sbmtUsrLgIn');
+submitLogIn.addEventListener('click', async () => {
+    const inputPasswordLogIn = document.getElementById('inptUsrPswdLgIn');
+    const inputEmailLogIn = document.getElementById('inpUsrEmlLgIn');
+    if (!inputEmailLogIn.value || !inputPasswordLogIn.value) {
+        // your code Input fields cannot be empty
+        console.log('Input fields cannot be empty');
+    }
+
+    const reqBody = {
+        email: inputEmailLogIn.value,
+        password: inputPasswordLogIn.value,
+    };
+
+    try {
+        const response = await fetch('http://localhost:3003/v1//user/login', {
+            method: 'POST',
+            body: JSON.stringify(reqBody),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (response.ok) {
+            // your code about login changes
+            console.log('log In');
+        } else {
+            console.log('Your username and password does not match');
+            // your code about user log In error
+        }
+    } catch (error) {
+        console.log(error);
     }
 });
 

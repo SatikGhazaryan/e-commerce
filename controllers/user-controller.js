@@ -10,8 +10,6 @@ class UserController {
     static async getUserPage(req, res) {
         try {
             res.sendFile(path.resolve('front/user/user.html'));
-            // res.sendFile(path.resolve('front/user/user.css'));
-            // res.sendFile(path.resolve('front/user/user.js'));
         } catch (error) {
             console.log('getUserPage err', error);
             return res.status(500).send({ message: 'something went wrong' });
@@ -19,6 +17,24 @@ class UserController {
     }
 
     static async registration(req, res) {
+        const emailPattern =  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (req.body.email.match(emailPattern)) {
+            console.log('Email valid');
+        } else {
+            return res.status(500).send({ message: 'Email validation error' });
+        }
+
+        const passwordPattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}/;
+        if (req.body.password.match(passwordPattern)) {
+            console.log('Password valid');
+        } else {
+            return res.status(500).send({ message: 'Your password must be at least 6-16 characters as well as contain at least one uppercase,one lowercase,one number' });
+        }
+
+        const email = await User.findOne({ email: req.body.email });
+        if (email) {
+            return res.status(500).send({ message: 'Email address is already been registered' });
+        }
         const newUser = new User({
             name: req.body.name,
             email: req.body.email,
@@ -26,21 +42,10 @@ class UserController {
                 req.body.password,
                 process.env.PASS_SEC,
             ).toString(),
-        });
-        // const userPassPattern = /(?!.* )(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/;
-        // if (req.body.password = '') {
-        //     return res.send({ message: 'Password can\'t be blank' });
-        // }
-        // if (req.body.password.match(userPassPattern)) {
-        //     return res.send({ message: 'pattern valid error' });
-        // }
-        // if ((req.body.password.length >= 8)  && (req.body.password.length <= 16)) {
-        //     res.send({ message: 'password mast begreat than 8 and less than 16' });
-        // } else {
-        //     res.send({ message: 'password must be greater than 8 and less than 16' });
-        // }
-        console.log(newUser);
 
+        });
+
+        console.log(newUser);
         try {
             const saveUser = await newUser.save();
             return res.status(201).send(saveUser);
