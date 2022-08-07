@@ -1,13 +1,13 @@
 'use strict';
 const Admin = require('../schemas/admin-schema.js');
+const jwt = require('jsonwebtoken');
 
 class AdminController {
     static async createAdmin(req, res) {
-        const adminBody = req.body;
         try {
             const saveData = await Admin.create({
-                name: adminBody.nameAdmin,
-                password: adminBody.passwordAdmin,
+                name: req.body.name,
+                password: req.body.password,
             });
 
             return res.status(201).send({ data: saveData });
@@ -18,13 +18,18 @@ class AdminController {
     }
 
     static async loginAdmin(req, res) {
-        const user = await Admin.findOne({
-            name: req.body.nameAdmin,
-            password: req.body.passwordAdmin,
+        const admin = await Admin.findOne({
+            name: req.body.name,
+            password: req.body.password,
         });
 
-        if (user) {
-            return res.status(200).send({ data: user });
+        const accessToken = jwt.sign(
+            { id: admin._id },
+            process.env.JWT_ACCESS_SECRET, { expiresIn: '3d' },
+        );
+
+        if (admin) {
+            return res.status(200).send({ data: admin, accessToken });
         }
 
         res.status(400).send({ message: 'username and password does not match' });
