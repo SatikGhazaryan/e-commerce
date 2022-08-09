@@ -8,6 +8,7 @@ const { verifyTokenAuthUser } = require('../service/token-service.js');
 userRouter.post('/user/login', UserController.loginUser);
 userRouter.post('/users', UserController.registration);
 userRouter.get('/users', UserController.getUserPage);
+userRouter.get('/usersList', UserController.getUserList);
 userRouter.put('/:id', verifyTokenAuthUser, UserController.putUser);
 userRouter.delete('/:id', verifyTokenAuthUser, UserController.deleteUser);
 

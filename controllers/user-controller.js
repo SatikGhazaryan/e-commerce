@@ -15,6 +15,17 @@ class UserController {
             return res.status(500).send({ message: 'something went wrong' });
         }
     }
+    static async getUserList(req, res) {
+        try {
+            const user = await User.find();
+
+            return res.status(200).send({
+                data: user });
+        } catch (error) {
+            console.log('get user list err', error);
+            return res.status(500).send({ message: 'something went wrong' });
+        }
+    }
 
     static async registration(req, res) {
         const emailPattern =  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

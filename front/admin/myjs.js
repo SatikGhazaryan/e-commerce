@@ -109,7 +109,7 @@ function addProduct() {
     product = false;
 }
 
-const productList = document.getElementById('ProductIs');
+const productList = document.getElementById('productList');
 productList.addEventListener('click', async () => {
     const response = await fetch('http://localhost:3003/v1/products', {
         method: 'GET',
@@ -173,4 +173,14 @@ submitNewCategories.addEventListener('click', async () => {
     } catch (error) {
         console.log('Create categories error', error);
     }
+});
+
+const userList = document.getElementById('userList');
+userList.addEventListener('click', async () => {
+    const response = await fetch('http://localhost:3003/v1/usersList', {
+        method: 'GET',
+    });
+    const requestBody = await response.json();
+    console.log(requestBody);
+    console.log(response);
 });
