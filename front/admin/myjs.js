@@ -109,14 +109,15 @@ function addProduct() {
     product = false;
 }
 
-async () => {
+const productList = document.getElementById('ProductIs');
+productList.addEventListener('click', async () => {
     const response = await fetch('http://localhost:3003/v1/products', {
         method: 'GET',
     });
     const requestBody = await response.json();
     console.log(requestBody);
     console.log(response);
-};
+});
 
 addProduct();
 const submitNewProduct = document.getElementById('add');

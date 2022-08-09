@@ -6,28 +6,10 @@ const Product = require('../schemas/product-schema.js');
 class ProductController {
     static async getProduct(req, res) {
         try {
-            const product = await Product.findById(req.params.id);
-            return res.status(200).send(product);
-        } catch (error) {
-            console.log('get product list err', error);
-            return res.status(500).send({ message: 'something went wrong' });
-        }
-    }
-    static async getProductList(req, res) {
-        const queryNew = req.query.new;
-        const queryCategories = req.query.categories;
-        try {
-            let products;
+            const product = await Product.find();
 
-            if (queryNew) {
-                products = await Product.find().sort({ created: -1 }).limit(5);
-            } else if (queryCategories) {
-                products = await Product.find().sort({ categories: -1 });
-            } else {
-                products = await Product.find();
-            }
-
-            return res.status(200).send(products);
+            return res.status(200).send({
+                data: product });
         } catch (error) {
             console.log('get product list err', error);
             return res.status(500).send({ message: 'something went wrong' });
