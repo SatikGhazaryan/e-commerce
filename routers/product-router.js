@@ -7,8 +7,7 @@ const { verifyTokenAuthAdmin } = require('../service/token-service.js');
 
 productsRouter.post('/products',  ProductController.createProduct);
 productsRouter.put('/:id', verifyTokenAuthAdmin, ProductController.putProduct);
-productsRouter.delete('/:id', verifyTokenAuthAdmin, ProductController.createProduct);
-productsRouter.get('/products', ProductController.getProductList);
+productsRouter.delete('/:id', verifyTokenAuthAdmin, ProductController.deleteProduct);
 productsRouter.get('/products', ProductController.getProduct);
 
 module.exports = productsRouter;
