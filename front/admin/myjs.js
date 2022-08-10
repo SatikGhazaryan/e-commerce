@@ -107,80 +107,79 @@ function addProduct() {
     }
     document.getElementById('cont').append(form);
     product = false;
+
+    const productList = document.getElementById('productList');
+    productList.addEventListener('click', async () => {
+        const response = await fetch('http://localhost:3003/v1/products', {
+            method: 'GET',
+        });
+        const requestBody = await response.json();
+        console.log(requestBody);
+        console.log(response);
+    });
+
+    const submitNewProduct = document.getElementById('add');
+    submitNewProduct.addEventListener('click', async () => {
+        const productName = document.getElementById('productName');
+        const description = document.getElementById('description');
+        const price = document.getElementById('price');
+        const imgUrl = document.getElementById('imgUrl');
+        // const selectCategories = document.getElementById('selectCategories');
+        const reqBody = {
+            name: productName.value,
+            description: description.value,
+            price: price.value,
+            imgUrl: imgUrl.value,
+        // categories: selectCategories.value,
+        };
+        console.log('reqBody', reqBody);
+        try {
+            const response = await fetch('http://localhost:3003/v1/products', {
+                method: 'POST',
+                body: JSON.stringify(reqBody),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+
+            });
+            const body = await response.json();
+            console.log('resBody', body);
+        } catch (error) {
+            console.log('Create user error', error);
+        }
+    });
+
+    const submitNewCategories = document.getElementById('btn');
+    submitNewCategories.addEventListener('click', async () => {
+        const categoriesName = document.getElementById('categoriesName');
+        const reqBody = {
+            name: categoriesName.value,
+        };
+        console.log('reqBody', reqBody);
+        try {
+            const response = await fetch('http://localhost:3003/v1/categories', {
+                method: 'POST',
+                body: JSON.stringify(reqBody),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+
+            });
+            const body = await response.json();
+            console.log('resBody', body);
+        } catch (error) {
+            console.log('Create categories error', error);
+        }
+    });
+
+    const userList = document.getElementById('userList');
+    userList.addEventListener('click', async () => {
+        const response = await fetch('http://localhost:3003/v1/usersList', {
+            method: 'GET',
+        });
+        const requestBody = await response.json();
+        console.log(requestBody);
+        console.log(response);
+    });
 }
 
-const productList = document.getElementById('productList');
-productList.addEventListener('click', async () => {
-    const response = await fetch('http://localhost:3003/v1/products', {
-        method: 'GET',
-    });
-    const requestBody = await response.json();
-    console.log(requestBody);
-    console.log(response);
-});
-
-addProduct();
-const submitNewProduct = document.getElementById('add');
-submitNewProduct.addEventListener('click', async () => {
-    const productName = document.getElementById('productName');
-    const description = document.getElementById('description');
-    const price = document.getElementById('price');
-    const imgUrl = document.getElementById('imgUrl');
-    // const selectCategories = document.getElementById('selectCategories');
-    const reqBody = {
-        name: productName.value,
-        description: description.value,
-        price: price.value,
-        imgUrl: imgUrl.value,
-        // categories: selectCategories.value,
-    };
-    console.log('reqBody', reqBody);
-    try {
-        const response = await fetch('http://localhost:3003/v1/products', {
-            method: 'POST',
-            body: JSON.stringify(reqBody),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-
-        });
-        const body = await response.json();
-        console.log('resBody', body);
-    } catch (error) {
-        console.log('Create user error', error);
-    }
-});
-
-creatCategories();
-const submitNewCategories = document.getElementById('btn');
-submitNewCategories.addEventListener('click', async () => {
-    const categoriesName = document.getElementById('categoriesName');
-    const reqBody = {
-        name: categoriesName.value,
-    };
-    console.log('reqBody', reqBody);
-    try {
-        const response = await fetch('http://localhost:3003/v1/categories', {
-            method: 'POST',
-            body: JSON.stringify(reqBody),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-
-        });
-        const body = await response.json();
-        console.log('resBody', body);
-    } catch (error) {
-        console.log('Create categories error', error);
-    }
-});
-
-const userList = document.getElementById('userList');
-userList.addEventListener('click', async () => {
-    const response = await fetch('http://localhost:3003/v1/usersList', {
-        method: 'GET',
-    });
-    const requestBody = await response.json();
-    console.log(requestBody);
-    console.log(response);
-});
