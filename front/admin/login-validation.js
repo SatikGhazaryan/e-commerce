@@ -1,7 +1,4 @@
 /* eslint-disable no-undef */
-import dotenv from 'dotenv';  // error eslint
-dotenv.config();
-console.log(process.env.FETCH_LOGIN_URL);
 function inputInit() {
     document.getElementById('notCorrectU').innerHTML = '';
     document.getElementById('notCorrectP').innerHTML = '';

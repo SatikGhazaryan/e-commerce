@@ -1,10 +1,9 @@
 {
     "extends": "eslint:recommended",
     "parserOptions": {
-        // "ecmaFeatures": {
-        //     "impliedStrict": true
-        // }
-        "sourceType": "module"
+        "ecmaFeatures": {
+            "impliedStrict": true
+        }
     },
     "root": true,
     "env": {
