@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-require('dotenv').config();
+const connection = new Connection(process.env.FETCH_LOGIN_URL);
 
 function inputInit() {
     document.getElementById('notCorrectU').innerHTML = '';
@@ -24,7 +24,7 @@ getSubmit.addEventListener('click', async () => {
     };
 
     try {
-        const response = await fetch(process.env.FETCH_LOGIN_URL, {  //  http://localhost:3003/v1/admin/login  'https://aqueous-mountain-70413.herokuapp.com/v1/admin/login'
+        const response = await fetch(connection, {  //  http://localhost:3003/v1/admin/login  'https://aqueous-mountain-70413.herokuapp.com/v1/admin/login'
             method: 'POST',
             body: JSON.stringify(requestBody),
             headers: {
