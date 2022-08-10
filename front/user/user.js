@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 'use strict';
 
@@ -102,3 +103,12 @@ submitLogIn.addEventListener('click', async () => {
     }
 });
 
+const icons = document.getElementById('burger');
+document.getElementById('mobileMenu').style.display = 'none';
+icons.addEventListener('click', () =>  {
+    document.getElementById('mobileMenu').style.display = 'block';
+});
+
+document.getElementById('close').addEventListener('click', () => {
+    document.getElementById('mobileMenu').style.display = 'none';
+});

@@ -8,6 +8,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,7 +32,10 @@
   <body>
     <nav>
       <div class="d-flex">
-        <a href="#" class="logo">SZAL</a>
+        <div class="d-flex-nav">
+          <a href="#" class="logo">SZAL</a>
+          <i class="fa fa-bars" id="burger"></i>
+        </div>
         <ul class="ul">
           <li><a href="#about">About us</a></li>
           <li><a href="#shop">Shop</a></li>
@@ -162,46 +169,91 @@
       </div>
     </div>
     <footer>
-      <p>e-commerce by SZAL</p>
+      <p id="p">e-commerce by SZAL</p>
     </footer>
     <div class="popup" id="pop">
-
       <div class="popup-body">
-       <span class="text-end" id="cls"> <i class="fa fa-close "></i></span>
+        <span class="text-end" id="cls"> <i class="fa fa-close"></i></span>
         <div class="d-flex">
           <div class="left">
             <p>Sign Up</p>
             <form>
-            <div class="row-user">
-              <input type="text" placeholder="Name" class="inp-user" id="inpUsrNmSignUp" />
-            </div>
-            <div class="row-user">
-              <input type="text" placeholder="E-mail" class="inp-user" id="inpUsrEmlSignUp" />
-            </div>
-            <div class="row-user">
-              <input type="password" placeholder="Password" class="inp-user" id="inpUsrPswdSignUp" />
-            </div>
-            <div class="row-user">
-              <input type="submit" class="btn-user-creat" value="Create new account" id="sbmtNewUsr" />
-            </div>
-          </form>
+              <div class="row-user">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  class="inp-user"
+                  id="inpUsrNmSignUp"
+                />
+              </div>
+              <div class="row-user">
+                <input
+                  type="text"
+                  placeholder="E-mail"
+                  class="inp-user"
+                  id="inpUsrEmlSignUp"
+                />
+              </div>
+              <div class="row-user">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  class="inp-user"
+                  id="inpUsrPswdSignUp"
+                />
+              </div>
+              <div class="row-user">
+                <input
+                  type="submit"
+                  class="btn-user-creat"
+                  value="Create new account"
+                  id="sbmtNewUsr"
+                />
+              </div>
+            </form>
           </div>
           <div class="center"></div>
           <div class="right">
             <form>
-            <div class="row-user mt">
-              <input type="text" class="inp-user"  placeholder="E-mail" id="inpUsrEmlLgIn" />
-            </div>
-            <div class="row-user">
-              <input type="password" placeholder="Password" class="inp-user" id="inptUsrPswdLgIn" />
-            </div>
-            <div class="row-user">
-              <input type="submit" class="btn-user" value="Log In" id="sbmtUsrLgIn" />
-            </div>
-          </form>
+              <div class="row-user mt">
+                <input
+                  type="text"
+                  class="inp-user"
+                  placeholder="E-mail"
+                  id="inpUsrEmlLgIn"
+                />
+              </div>
+              <div class="row-user">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  class="inp-user"
+                  id="inptUsrPswdLgIn"
+                />
+              </div>
+              <div class="row-user">
+                <input
+                  type="submit"
+                  class="btn-user"
+                  value="Log In"
+                  id="sbmtUsrLgIn"
+                />
+              </div>
+            </form>
           </div>
         </div>
       </div>
+    </div>
+    <div class="mobile" id="mobileMenu">
+      <div class="row-close">
+        <i class="fa fa-close" id="close"></i>
+      </div>
+      <ul class="ul-mobile">
+        <li><a href="#about">About us</a></li>
+        <li><a href="#shop">Shop</a></li>
+
+        <li><a href="#cont">Contact us</a></li>
+      </ul>
     </div>
     <!-- My JS-->
     <script src="user.js"></script>
