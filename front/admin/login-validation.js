@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';  // error eslint
 dotenv.config();
 console.log(process.env.FETCH_LOGIN_URL);
 function inputInit() {
