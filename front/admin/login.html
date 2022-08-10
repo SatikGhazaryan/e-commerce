@@ -12,46 +12,29 @@
     <title>admin</title>
   </head>
   <body>
-    <div class="nav">
-      <ul>
-        <li class="brend">Piafchik</li>
-        <li class="li"><i class="fa fa-home"></i>Dashboard</li>
-        <li class="li"><i class="fa fa-shopping-bag"></i>Products</li>
-        <li class="li"><i class="fa fa-shopping-cart"></i>Add product</li>
-        <li class="li"><i class="fa fa-list"></i>Categories</li>
-        <li class="li"><i class="fa fa-shopping-basket"></i>Orders</li>
-        <li class="li"><i class="fa fa-user"></i>Customers / Users</li>
-      </ul>
-    </div>
-    <div class="main">
-      <div class="header">
-        <h3>Welcome to Admin Verification Page</h3>
-        <div class="row end">
-          <div class="admin">
-            <img class="admin-img" src="./img/admin.png" alt="admin-img" />
-          </div>
-        </div>
-      </div>
-      <div class="section">
+  
+      <div class="sect">
         <div class="row">
-          <h1 id="inNav"></h1>
+        
+         
         </div>
         <div class="content" id="cont"></div>
         <p>
           <div>
-            <label for="userName">Admin username</label>
+            
+            <label for="userName">Admin name</label>
             <input type="text" name="userName" id="userName" required />
             <pre id = "notCorrectU" style="color:rgb(239, 147, 147)"> </pre>
           </div>
           <div>
             <label for="userPassword">Password</label>
-            <input type="text" name="userPassword" id="userPassword" required/>
+            <input type="text"  name="userPassword" id="userPassword" required/>
             <pre id = "notCorrectP" style="color:rgb(103, 77, 192)"> </pre>
           </div>
-          <div>
-            <button type="button" id="submit">Submit</button>
+          <div class="buttons">
+            <button type="button" class="btn" id="submit">Submit</button>
           <br></br>
-            <button type="button" id="refresh">Refresh</button>
+            <button type="button" class="btn" id="refresh">Refresh</button>
           </div>
         </p>
       </div>
