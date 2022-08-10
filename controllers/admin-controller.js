@@ -18,21 +18,22 @@ class AdminController {
     }
 
     static async loginAdmin(req, res) {
-        const admin = await Admin.findOne({
-            name: req.body.name,
-            password: req.body.password,
-        });
-
-        const accessToken = jwt.sign(
-            { id: admin._id },
-            process.env.JWT_ACCESS_SECRET, { expiresIn: '3d' },
-        );
-
-        if (admin) {
-            return res.status(200).send({ data: admin, accessToken });
+        try {
+            const admin = await Admin.findOne({
+                name: req.body.name,
+                password: req.body.password,
+            });
+            const accessToken = jwt.sign(
+                { id: admin._id },
+                process.env.JWT_ACCESS_SECRET, { expiresIn: '3d' },
+            );
+            if (admin) {
+                return res.status(200).send({ data: admin, accessToken });
+            }
+        } catch (error) {
+            console.log('error in login admin', error);
+            res.status(400).send({ message: 'username and password does not match' });
         }
-
-        res.status(400).send({ message: 'username and password does not match' });
     }
 }
 
