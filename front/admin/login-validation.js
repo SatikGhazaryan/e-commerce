@@ -1,4 +1,6 @@
 /* eslint-disable no-undef */
+require('dotenv').config();
+
 function inputInit() {
     document.getElementById('notCorrectU').innerHTML = '';
     document.getElementById('notCorrectP').innerHTML = '';
