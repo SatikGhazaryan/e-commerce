@@ -1,4 +1,7 @@
 /* eslint-disable no-undef */
+const dotenv = require('dotenv');
+dotenv.config();
+console.log(process.env.FETCH_LOGIN_URL);
 function inputInit() {
     document.getElementById('notCorrectU').innerHTML = '';
     document.getElementById('notCorrectP').innerHTML = '';
