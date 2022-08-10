@@ -9,7 +9,7 @@ const json = express.json();
 const port = process.env.PORT || 3003;
 dotenv.config();
 
-const staticFiles = express.static('./front/user');
+const staticFiles = express.static('./front');
 app.use(staticFiles);
 
 app.use(json);
