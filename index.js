@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const app = express();
 const http = require('http').createServer(app);
 const mongoose = require('mongoose');
@@ -15,11 +14,6 @@ app.use(staticFiles);
 
 app.use(json);
 app.use(cookieParser());
-
-app.get('/v1', async (req, res) => {
-    await res.sendFile(path.resolve('front/user/user.html'));
-});
-
 app.use('/v1', indexRouter);
 
 (async () => {
