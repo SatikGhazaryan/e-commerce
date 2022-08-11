@@ -58,7 +58,7 @@ function creatCategories() {
         };
         console.log('reqBody', reqBody);
         try {
-            const response = await fetch('http://localhost:3003/v1/categories', {
+            const response = await fetch('/v1/categories', {  //  http://localhost:3003/v1/categories
                 method: 'POST',
                 body: JSON.stringify(reqBody),
                 headers: {
@@ -133,7 +133,7 @@ function addProduct() {
 
     const productList = document.getElementById('productList');
     productList.addEventListener('click', async () => {
-        const response = await fetch('http://localhost:3003/v1/products', {
+        const response = await fetch('/v1/products', {  //  http://localhost:3003/v1/products
             method: 'GET',
         });
         const requestBody = await response.json();
@@ -157,7 +157,7 @@ function addProduct() {
         };
         console.log('reqBody', reqBody);
         try {
-            const response = await fetch('http://localhost:3003/v1/products', {
+            const response = await fetch('/v1/products', {  //  http://localhost:3003/v1/products
                 method: 'POST',
                 body: JSON.stringify(reqBody),
                 headers: {
@@ -197,7 +197,7 @@ function addProduct() {
 
     const userList = document.getElementById('userList');
     userList.addEventListener('click', async () => {
-        const response = await fetch('http://localhost:3003/v1/usersList', {
+        const response = await fetch('/v1/usersList', {  //  http://localhost:3003/v1/usersList
             method: 'GET',
         });
         const requestBody = await response.json();
