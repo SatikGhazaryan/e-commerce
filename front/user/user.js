@@ -13,7 +13,7 @@ document.getElementById('cls').addEventListener('click', () =>  {
 });
 
 async () => {
-    const response = await fetch('http://localhost:3003/v1/users', {
+    const response = await fetch('v1/users', {  //  http://localhost:3003/v1/users
         method: 'GET',
     });
     const requestBody = await response.json();
@@ -54,7 +54,7 @@ submitNewUser.addEventListener('click', async () => {
     };
     console.log('reqBody', reqBody);
     try {
-        const response = await fetch('http://localhost:3003/v1/users', {
+        const response = await fetch('/v1/users', {  //  http://localhost:3003/v1/users
             method: 'POST',
             body: JSON.stringify(reqBody),
             headers: {
@@ -84,7 +84,7 @@ submitLogIn.addEventListener('click', async () => {
     };
 
     try {
-        const response = await fetch('http://localhost:3003/v1//user/login', {
+        const response = await fetch('/v1//user/login', {  //  http://localhost:3003/v1//user/login
             method: 'POST',
             body: JSON.stringify(reqBody),
             headers: {
