@@ -49,6 +49,29 @@ function creatCategories() {
     document.getElementById('cont').append(form);
 
     categorie = false;
+
+    const submitNewCategories = document.getElementById('btn');
+    submitNewCategories.addEventListener('click', async () => {
+        const categoriesName = document.getElementById('categoriesName');
+        const reqBody = {
+            name: categoriesName.value,
+        };
+        console.log('reqBody', reqBody);
+        try {
+            const response = await fetch('http://localhost:3003/v1/categories', {
+                method: 'POST',
+                body: JSON.stringify(reqBody),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+
+            });
+            const body = await response.json();
+            console.log('resBody', body);
+        } catch (error) {
+            console.log('Create categories error', error);
+        }
+    });
     // const creatbtn = document.getElementById('btn');
     // creatbtn.addEventListener('click', getCategores);
 }
@@ -149,28 +172,28 @@ function addProduct() {
         }
     });
 
-    const submitNewCategories = document.getElementById('btn');
-    submitNewCategories.addEventListener('click', async () => {
-        const categoriesName = document.getElementById('categoriesName');
-        const reqBody = {
-            name: categoriesName.value,
-        };
-        console.log('reqBody', reqBody);
-        try {
-            const response = await fetch('http://localhost:3003/v1/categories', {
-                method: 'POST',
-                body: JSON.stringify(reqBody),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+    // const submitNewCategories = document.getElementById('btn');
+    // submitNewCategories.addEventListener('click', async () => {
+    //     const categoriesName = document.getElementById('categoriesName');
+    //     const reqBody = {
+    //         name: categoriesName.value,
+    //     };
+    //     console.log('reqBody', reqBody);
+    //     try {
+    //         const response = await fetch('http://localhost:3003/v1/categories', {
+    //             method: 'POST',
+    //             body: JSON.stringify(reqBody),
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
 
-            });
-            const body = await response.json();
-            console.log('resBody', body);
-        } catch (error) {
-            console.log('Create categories error', error);
-        }
-    });
+    //         });
+    //         const body = await response.json();
+    //         console.log('resBody', body);
+    //     } catch (error) {
+    //         console.log('Create categories error', error);
+    //     }
+    // });
 
     const userList = document.getElementById('userList');
     userList.addEventListener('click', async () => {
