@@ -16,7 +16,7 @@ app.use(staticFiles);
 app.use(json);
 app.use(cookieParser());
 
-app.get('/', async (req, res) => {
+app.get('/v1', async (req, res) => {
     await res.sendFile(path.resolve('front/user/user.html'));
 });
 
