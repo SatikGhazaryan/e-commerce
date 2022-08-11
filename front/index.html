@@ -9,6 +9,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome</h1>
+    <script>
+        const link = document.querySelector('link[rel=import]');
+        const content = link.import.querySelector('body');
+        document.body.appendChild(content.cloneNode(true));
+    </script>
 </body>
 </html>
