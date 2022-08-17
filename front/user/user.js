@@ -138,7 +138,14 @@ function creatTable(products) {
         for (const kay in element) {
             if (kay === 'imgUrl') {
                 const img = document.createElement('img');
-                img.src = element.imgUrl;
+                let url = element.imgUrl;
+
+                if (url.match(/fakepath/)) {
+                    const tempUrl = url.replace(/C:\\fakepath\\/i, '');
+                    url = `../images/${tempUrl}`;
+                }
+
+                img.src = url;
                 div.append(img);
             } else if (kay === 'name') {
                 const h1 = document.createElement('h1');
