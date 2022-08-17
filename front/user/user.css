@@ -30,6 +30,25 @@ nav {
   margin: 0 auto;
   padding: 0 10px;
 }
+.flex-wrap{
+  flex-wrap: wrap;
+
+
+}
+#product{
+  width:23%;
+  border:1px solid #f0f0f0;
+  padding: 20px;
+  margin-top:25px;
+  border-radius: 5px;
+  transition: .5s;
+  cursor:pointer;
+}
+#product:hover{
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+ 
+}
+
 ul {
   padding: 0;
   list-style: none;
@@ -240,6 +259,7 @@ footer {
   z-index: 10000;
   width: 100%;
 }
+
 @keyframes anim{
   from{width: 0;}
   to{width:100%}
@@ -250,6 +270,7 @@ footer {
 .row-close{display: flex;justify-content: end;}
 .row-close i{font-size: 24px;color:#a43664;margin: 10px;}
 @media screen and (max-width: 600px) {
+  #product{width:100%}
   .d-flex {
     display: block;
   }

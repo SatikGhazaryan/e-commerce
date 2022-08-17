@@ -121,11 +121,40 @@ async function getData() {
     const body = await response.json();
     const { products, categories } = body.data;
 
-    console.log('Data', body.data);
-    console.log('Products', products);
-    console.log('Categories', categories);
+    // console.log('Data', body.data);
+    // console.log('Products', products);
+    // console.log('Categories', categories);
+    // eslint-disable-next-line no-unreachable
+    creatTable(products);
     return body.data;
 }
 
 getData();
 
+function creatTable(products) {
+    products.forEach(element => {
+        const div = document.createElement('div');
+        div.id = 'product';
+        for (const kay in element) {
+            if (kay === 'imgUrl') {
+                const img = document.createElement('img');
+                img.src = element.imgUrl;
+                div.append(img);
+            } else if (kay === 'name') {
+                const h1 = document.createElement('h1');
+                h1.innerHTML = element.name;
+                div.append(h1);
+            } else if (kay === 'description') {
+                const p1 = document.createElement('p');
+                p1.innerHTML = element.description;
+                div.append(p1);
+            } else if (kay === 'price') {
+                const p1 = document.createElement('p');
+                p1.innerHTML = `${element.price} $`;
+                div.append(p1);
+            }
+        }
+
+        document.getElementById('table').append(div);
+    });
+}
