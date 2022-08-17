@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+
 const li = document.querySelectorAll('.li');
 document.getElementById('inNav').innerHTML = li[0].innerText;
 let [privElement] = li[0].querySelectorAll('i');

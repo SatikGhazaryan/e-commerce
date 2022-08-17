@@ -112,3 +112,20 @@ icons.addEventListener('click', () =>  {
 document.getElementById('close').addEventListener('click', () => {
     document.getElementById('mobileMenu').style.display = 'none';
 });
+
+async function getData() {
+    const response = await fetch('/v1/users', {
+        method: 'GET',
+    });
+
+    const body = await response.json();
+    const { products, categories } = body.data;
+
+    console.log('Data', body.data);
+    console.log('Products', products);
+    console.log('Categories', categories);
+    return body.data;
+}
+
+getData();
+

@@ -1,15 +1,21 @@
 'use strict';
 
+const Categories = require('../schemas/categories-schema.js');
 const Product = require('../schemas/product-schema.js');
 // const path = require('path');
 
 class ProductController {
     static async getProduct(req, res) {
         try {
-            const product = await Product.find();
+            const products = await Product.find();
+            const categories = await Categories.find();
+            const data = {
+                products,
+                categories,
+            };
 
             return res.status(200).send({
-                data: product });
+                data });
         } catch (error) {
             console.log('get product list err', error);
             return res.status(500).send({ message: 'something went wrong' });
